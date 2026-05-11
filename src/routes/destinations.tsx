@@ -1,0 +1,62 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowLeft, Plane } from "lucide-react";
+import paris from "@/assets/dest-paris.jpg";
+import brussels from "@/assets/dest-brussels.jpg";
+import dubai from "@/assets/dest-dubai.jpg";
+import capetown from "@/assets/dest-capetown.jpg";
+
+export const Route = createFileRoute("/destinations")({
+  head: () => ({
+    meta: [
+      { title: "Destinations — KIN Aéroport" },
+      { name: "description", content: "Toutes les destinations au départ de Kinshasa-N'djili." },
+      { property: "og:title", content: "Destinations au départ de Kinshasa" },
+      { property: "og:description", content: "Découvrez les villes desservies depuis N'djili." },
+    ],
+  }),
+  component: Destinations,
+});
+
+const dests = [
+  { img: paris, name: "Paris", country: "France", desc: "Capitale lumineuse, art & gastronomie", airlines: ["Air France"], duration: "8h05" },
+  { img: brussels, name: "Bruxelles", country: "Belgique", desc: "Cœur historique de l'Europe", airlines: ["Brussels Airlines"], duration: "8h20" },
+  { img: dubai, name: "Dubaï", country: "Émirats", desc: "Métropole futuriste du Golfe", airlines: ["Emirates"], duration: "8h45" },
+  { img: capetown, name: "Le Cap", country: "Afrique du Sud", desc: "Entre océan et montagne", airlines: ["South African Airways"], duration: "5h30" },
+  { img: paris, name: "Addis-Abeba", country: "Éthiopie", desc: "Carrefour de l'Afrique de l'Est", airlines: ["Ethiopian Airlines"], duration: "4h15" },
+  { img: brussels, name: "Nairobi", country: "Kenya", desc: "Hub économique régional", airlines: ["Kenya Airways"], duration: "3h30" },
+  { img: dubai, name: "Istanbul", country: "Turquie", desc: "Pont entre l'Europe et l'Asie", airlines: ["Turkish Airlines"], duration: "8h55" },
+  { img: capetown, name: "Johannesburg", country: "Afrique du Sud", desc: "Capitale économique sud-africaine", airlines: ["SAA"], duration: "4h10" },
+];
+
+function Destinations() {
+  return (
+    <main className="mx-auto max-w-7xl px-4 lg:px-8 py-16">
+      <Link to="/" className="text-sm text-accent font-bold inline-flex items-center gap-1 mb-6"><ArrowLeft className="h-4 w-4" /> Accueil</Link>
+      <span className="text-accent text-xs font-bold tracking-[0.3em] uppercase">S'inspirer</span>
+      <h1 className="text-5xl md:text-6xl font-extrabold text-primary mt-2">Destinations</h1>
+      <p className="mt-4 text-lg text-muted-foreground max-w-2xl">Voyagez depuis Kinshasa-N'djili vers les plus grandes villes d'Afrique, d'Europe et du Golfe.</p>
+
+      <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {dests.map((d) => (
+          <article key={d.name} className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-[var(--shadow-card)] transition">
+            <div className="aspect-[3/4] overflow-hidden relative">
+              <img src={d.img} alt={d.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-4 text-primary-foreground">
+                <p className="text-[11px] uppercase tracking-wider opacity-80 font-bold">{d.country}</p>
+                <h2 className="text-2xl font-extrabold">{d.name}</h2>
+              </div>
+            </div>
+            <div className="p-5">
+              <p className="text-sm text-muted-foreground">{d.desc}</p>
+              <div className="mt-4 flex items-center justify-between text-xs">
+                <span className="text-primary font-bold inline-flex items-center gap-1"><Plane className="h-3 w-3" />{d.duration}</span>
+                <span className="text-muted-foreground">{d.airlines[0]}</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </main>
+  );
+}

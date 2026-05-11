@@ -12,8 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VolsRouteImport } from './routes/vols'
 import { Route as TransportsRouteImport } from './routes/transports'
 import { Route as PreparerRouteImport } from './routes/preparer'
+import { Route as ParkingRouteImport } from './routes/parking'
 import { Route as KinshasaRouteImport } from './routes/kinshasa'
+import { Route as DestinationsRouteImport } from './routes/destinations'
 import { Route as AeroportRouteImport } from './routes/aeroport'
+import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VolsRoute = VolsRouteImport.update({
@@ -31,14 +34,29 @@ const PreparerRoute = PreparerRouteImport.update({
   path: '/preparer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ParkingRoute = ParkingRouteImport.update({
+  id: '/parking',
+  path: '/parking',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KinshasaRoute = KinshasaRouteImport.update({
   id: '/kinshasa',
   path: '/kinshasa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DestinationsRoute = DestinationsRouteImport.update({
+  id: '/destinations',
+  path: '/destinations',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AeroportRoute = AeroportRouteImport.update({
   id: '/aeroport',
   path: '/aeroport',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ActualitesRoute = ActualitesRouteImport.update({
+  id: '/actualites',
+  path: '/actualites',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,16 +67,22 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRoute
+  '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRoute
+  '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRoute
   '/transports': typeof TransportsRoute
   '/vols': typeof VolsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRoute
+  '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRoute
+  '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRoute
   '/transports': typeof TransportsRoute
   '/vols': typeof VolsRoute
@@ -66,8 +90,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRoute
+  '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRoute
+  '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRoute
   '/transports': typeof TransportsRoute
   '/vols': typeof VolsRoute
@@ -76,18 +103,33 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/actualites'
     | '/aeroport'
+    | '/destinations'
     | '/kinshasa'
+    | '/parking'
     | '/preparer'
     | '/transports'
     | '/vols'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/aeroport' | '/kinshasa' | '/preparer' | '/transports' | '/vols'
+  to:
+    | '/'
+    | '/actualites'
+    | '/aeroport'
+    | '/destinations'
+    | '/kinshasa'
+    | '/parking'
+    | '/preparer'
+    | '/transports'
+    | '/vols'
   id:
     | '__root__'
     | '/'
+    | '/actualites'
     | '/aeroport'
+    | '/destinations'
     | '/kinshasa'
+    | '/parking'
     | '/preparer'
     | '/transports'
     | '/vols'
@@ -95,8 +137,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ActualitesRoute: typeof ActualitesRoute
   AeroportRoute: typeof AeroportRoute
+  DestinationsRoute: typeof DestinationsRoute
   KinshasaRoute: typeof KinshasaRoute
+  ParkingRoute: typeof ParkingRoute
   PreparerRoute: typeof PreparerRoute
   TransportsRoute: typeof TransportsRoute
   VolsRoute: typeof VolsRoute
@@ -125,6 +170,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PreparerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/parking': {
+      id: '/parking'
+      path: '/parking'
+      fullPath: '/parking'
+      preLoaderRoute: typeof ParkingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kinshasa': {
       id: '/kinshasa'
       path: '/kinshasa'
@@ -132,11 +184,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KinshasaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/destinations': {
+      id: '/destinations'
+      path: '/destinations'
+      fullPath: '/destinations'
+      preLoaderRoute: typeof DestinationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/aeroport': {
       id: '/aeroport'
       path: '/aeroport'
       fullPath: '/aeroport'
       preLoaderRoute: typeof AeroportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/actualites': {
+      id: '/actualites'
+      path: '/actualites'
+      fullPath: '/actualites'
+      preLoaderRoute: typeof ActualitesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -151,8 +217,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ActualitesRoute: ActualitesRoute,
   AeroportRoute: AeroportRoute,
+  DestinationsRoute: DestinationsRoute,
   KinshasaRoute: KinshasaRoute,
+  ParkingRoute: ParkingRoute,
   PreparerRoute: PreparerRoute,
   TransportsRoute: TransportsRoute,
   VolsRoute: VolsRoute,
@@ -160,3 +229,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
