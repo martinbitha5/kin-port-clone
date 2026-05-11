@@ -162,9 +162,9 @@ function Index() {
               <h3 className="text-2xl font-bold mt-2">Boulevard Lumumba</h3>
               <p className="text-sm opacity-80 mt-1">vers Aéroport de N'djili</p>
               <p className="text-5xl font-extrabold mt-6">28 <span className="text-lg font-bold opacity-80">min</span></p>
-              <button className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-accent">
+              <Link to="/transports" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-accent">
                 Venir en voiture <ArrowRight className="h-4 w-4" />
-              </button>
+              </Link>
               <MapPin className="absolute -right-6 -bottom-6 h-40 w-40 opacity-10" />
             </div>
 
@@ -183,9 +183,9 @@ function Index() {
                   </li>
                 ))}
               </ul>
-              <button className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-accent">
+              <Link to="/parking" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-accent">
                 Réserver un parking <ArrowRight className="h-4 w-4" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -204,19 +204,24 @@ function Index() {
               { img: planeImg, tag: "Information", title: "Programme de modernisation 2026 — informez-vous", cta: "Je me renseigne" },
               { img: heroImg, tag: "Magazine", title: "Lisez le nouveau numéro KIN Magazine", cta: "Je lis le magazine" },
             ].map((c) => (
-              <article key={c.title} className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-[var(--shadow-card)] transition">
+              <Link to="/actualites" key={c.title} className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-[var(--shadow-card)] transition block">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img src={c.img} alt={c.title} loading="lazy" className="h-full w-full object-cover group-hover:scale-105 transition duration-700" />
                 </div>
                 <div className="p-6">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-accent">{c.tag}</span>
                   <h3 className="text-xl font-bold text-primary mt-2 leading-snug">{c.title}</h3>
-                  <button className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-accent">
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary group-hover:text-accent">
                     {c.cta} <ArrowRight className="h-4 w-4" />
-                  </button>
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link to="/actualites" className="inline-flex items-center gap-2 text-sm font-bold text-accent">
+              Toutes les actualités <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -235,15 +240,20 @@ function Index() {
               { img: dubai, name: "Dubaï", desc: "Métropole futuriste du Golfe" },
               { img: capetown, name: "Le Cap", desc: "Entre océan et montagne" },
             ].map((d) => (
-              <a key={d.name} href="#" className="group relative aspect-[3/4] rounded-2xl overflow-hidden block">
+              <Link key={d.name} to="/destinations" className="group relative aspect-[3/4] rounded-2xl overflow-hidden block">
                 <img src={d.img} alt={d.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5 text-primary-foreground">
                   <h3 className="text-2xl font-extrabold">{d.name}</h3>
                   <p className="text-sm opacity-90 mt-1">{d.desc}</p>
                 </div>
-              </a>
+              </Link>
             ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link to="/destinations" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-7 py-3 rounded-full hover:scale-105 transition">
+              Toutes les destinations <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -259,9 +269,14 @@ function Index() {
           <p className="opacity-90 mt-4 max-w-xl">
             Recevez l'état des arrivées et départs de l'aéroport de Kinshasa-N'djili en temps réel, directement sur votre téléphone.
           </p>
-          <button className="mt-8 inline-flex items-center gap-2 bg-accent text-accent-foreground font-bold px-7 py-4 rounded-full hover:scale-105 transition">
-            Activer les notifications <ArrowRight className="h-4 w-4" />
-          </button>
+          <a
+            href="https://wa.me/243800000000?text=Bonjour%20KIN%20A%C3%A9roport%2C%20je%20souhaite%20activer%20les%20notifications%20de%20vol."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-2 bg-accent text-accent-foreground font-bold px-7 py-4 rounded-full hover:scale-105 transition"
+          >
+            Activer les notifications WhatsApp <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </section>
     </main>

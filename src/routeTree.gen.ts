@@ -18,6 +18,19 @@ import { Route as DestinationsRouteImport } from './routes/destinations'
 import { Route as AeroportRouteImport } from './routes/aeroport'
 import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VolsDepartsRouteImport } from './routes/vols.departs'
+import { Route as VolsCompagniesRouteImport } from './routes/vols.compagnies'
+import { Route as VolsArriveesRouteImport } from './routes/vols.arrivees'
+import { Route as TransportsTaxiRouteImport } from './routes/transports.taxi'
+import { Route as TransportsBusRouteImport } from './routes/transports.bus'
+import { Route as PreparerSecuriteRouteImport } from './routes/preparer.securite'
+import { Route as PreparerFamillesRouteImport } from './routes/preparer.familles'
+import { Route as PreparerEnregistrementRouteImport } from './routes/preparer.enregistrement'
+import { Route as KinshasaVisiterRouteImport } from './routes/kinshasa.visiter'
+import { Route as KinshasaHotelsRouteImport } from './routes/kinshasa.hotels'
+import { Route as KinshasaAffairesRouteImport } from './routes/kinshasa.affaires'
+import { Route as AeroportServicesRouteImport } from './routes/aeroport.services'
+import { Route as AeroportBoutiquesRouteImport } from './routes/aeroport.boutiques'
 
 const VolsRoute = VolsRouteImport.update({
   id: '/vols',
@@ -64,40 +77,144 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VolsDepartsRoute = VolsDepartsRouteImport.update({
+  id: '/departs',
+  path: '/departs',
+  getParentRoute: () => VolsRoute,
+} as any)
+const VolsCompagniesRoute = VolsCompagniesRouteImport.update({
+  id: '/compagnies',
+  path: '/compagnies',
+  getParentRoute: () => VolsRoute,
+} as any)
+const VolsArriveesRoute = VolsArriveesRouteImport.update({
+  id: '/arrivees',
+  path: '/arrivees',
+  getParentRoute: () => VolsRoute,
+} as any)
+const TransportsTaxiRoute = TransportsTaxiRouteImport.update({
+  id: '/taxi',
+  path: '/taxi',
+  getParentRoute: () => TransportsRoute,
+} as any)
+const TransportsBusRoute = TransportsBusRouteImport.update({
+  id: '/bus',
+  path: '/bus',
+  getParentRoute: () => TransportsRoute,
+} as any)
+const PreparerSecuriteRoute = PreparerSecuriteRouteImport.update({
+  id: '/securite',
+  path: '/securite',
+  getParentRoute: () => PreparerRoute,
+} as any)
+const PreparerFamillesRoute = PreparerFamillesRouteImport.update({
+  id: '/familles',
+  path: '/familles',
+  getParentRoute: () => PreparerRoute,
+} as any)
+const PreparerEnregistrementRoute = PreparerEnregistrementRouteImport.update({
+  id: '/enregistrement',
+  path: '/enregistrement',
+  getParentRoute: () => PreparerRoute,
+} as any)
+const KinshasaVisiterRoute = KinshasaVisiterRouteImport.update({
+  id: '/visiter',
+  path: '/visiter',
+  getParentRoute: () => KinshasaRoute,
+} as any)
+const KinshasaHotelsRoute = KinshasaHotelsRouteImport.update({
+  id: '/hotels',
+  path: '/hotels',
+  getParentRoute: () => KinshasaRoute,
+} as any)
+const KinshasaAffairesRoute = KinshasaAffairesRouteImport.update({
+  id: '/affaires',
+  path: '/affaires',
+  getParentRoute: () => KinshasaRoute,
+} as any)
+const AeroportServicesRoute = AeroportServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => AeroportRoute,
+} as any)
+const AeroportBoutiquesRoute = AeroportBoutiquesRouteImport.update({
+  id: '/boutiques',
+  path: '/boutiques',
+  getParentRoute: () => AeroportRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
-  '/aeroport': typeof AeroportRoute
+  '/aeroport': typeof AeroportRouteWithChildren
   '/destinations': typeof DestinationsRoute
-  '/kinshasa': typeof KinshasaRoute
+  '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
-  '/preparer': typeof PreparerRoute
-  '/transports': typeof TransportsRoute
-  '/vols': typeof VolsRoute
+  '/preparer': typeof PreparerRouteWithChildren
+  '/transports': typeof TransportsRouteWithChildren
+  '/vols': typeof VolsRouteWithChildren
+  '/aeroport/boutiques': typeof AeroportBoutiquesRoute
+  '/aeroport/services': typeof AeroportServicesRoute
+  '/kinshasa/affaires': typeof KinshasaAffairesRoute
+  '/kinshasa/hotels': typeof KinshasaHotelsRoute
+  '/kinshasa/visiter': typeof KinshasaVisiterRoute
+  '/preparer/enregistrement': typeof PreparerEnregistrementRoute
+  '/preparer/familles': typeof PreparerFamillesRoute
+  '/preparer/securite': typeof PreparerSecuriteRoute
+  '/transports/bus': typeof TransportsBusRoute
+  '/transports/taxi': typeof TransportsTaxiRoute
+  '/vols/arrivees': typeof VolsArriveesRoute
+  '/vols/compagnies': typeof VolsCompagniesRoute
+  '/vols/departs': typeof VolsDepartsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
-  '/aeroport': typeof AeroportRoute
+  '/aeroport': typeof AeroportRouteWithChildren
   '/destinations': typeof DestinationsRoute
-  '/kinshasa': typeof KinshasaRoute
+  '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
-  '/preparer': typeof PreparerRoute
-  '/transports': typeof TransportsRoute
-  '/vols': typeof VolsRoute
+  '/preparer': typeof PreparerRouteWithChildren
+  '/transports': typeof TransportsRouteWithChildren
+  '/vols': typeof VolsRouteWithChildren
+  '/aeroport/boutiques': typeof AeroportBoutiquesRoute
+  '/aeroport/services': typeof AeroportServicesRoute
+  '/kinshasa/affaires': typeof KinshasaAffairesRoute
+  '/kinshasa/hotels': typeof KinshasaHotelsRoute
+  '/kinshasa/visiter': typeof KinshasaVisiterRoute
+  '/preparer/enregistrement': typeof PreparerEnregistrementRoute
+  '/preparer/familles': typeof PreparerFamillesRoute
+  '/preparer/securite': typeof PreparerSecuriteRoute
+  '/transports/bus': typeof TransportsBusRoute
+  '/transports/taxi': typeof TransportsTaxiRoute
+  '/vols/arrivees': typeof VolsArriveesRoute
+  '/vols/compagnies': typeof VolsCompagniesRoute
+  '/vols/departs': typeof VolsDepartsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
-  '/aeroport': typeof AeroportRoute
+  '/aeroport': typeof AeroportRouteWithChildren
   '/destinations': typeof DestinationsRoute
-  '/kinshasa': typeof KinshasaRoute
+  '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
-  '/preparer': typeof PreparerRoute
-  '/transports': typeof TransportsRoute
-  '/vols': typeof VolsRoute
+  '/preparer': typeof PreparerRouteWithChildren
+  '/transports': typeof TransportsRouteWithChildren
+  '/vols': typeof VolsRouteWithChildren
+  '/aeroport/boutiques': typeof AeroportBoutiquesRoute
+  '/aeroport/services': typeof AeroportServicesRoute
+  '/kinshasa/affaires': typeof KinshasaAffairesRoute
+  '/kinshasa/hotels': typeof KinshasaHotelsRoute
+  '/kinshasa/visiter': typeof KinshasaVisiterRoute
+  '/preparer/enregistrement': typeof PreparerEnregistrementRoute
+  '/preparer/familles': typeof PreparerFamillesRoute
+  '/preparer/securite': typeof PreparerSecuriteRoute
+  '/transports/bus': typeof TransportsBusRoute
+  '/transports/taxi': typeof TransportsTaxiRoute
+  '/vols/arrivees': typeof VolsArriveesRoute
+  '/vols/compagnies': typeof VolsCompagniesRoute
+  '/vols/departs': typeof VolsDepartsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +228,19 @@ export interface FileRouteTypes {
     | '/preparer'
     | '/transports'
     | '/vols'
+    | '/aeroport/boutiques'
+    | '/aeroport/services'
+    | '/kinshasa/affaires'
+    | '/kinshasa/hotels'
+    | '/kinshasa/visiter'
+    | '/preparer/enregistrement'
+    | '/preparer/familles'
+    | '/preparer/securite'
+    | '/transports/bus'
+    | '/transports/taxi'
+    | '/vols/arrivees'
+    | '/vols/compagnies'
+    | '/vols/departs'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +252,19 @@ export interface FileRouteTypes {
     | '/preparer'
     | '/transports'
     | '/vols'
+    | '/aeroport/boutiques'
+    | '/aeroport/services'
+    | '/kinshasa/affaires'
+    | '/kinshasa/hotels'
+    | '/kinshasa/visiter'
+    | '/preparer/enregistrement'
+    | '/preparer/familles'
+    | '/preparer/securite'
+    | '/transports/bus'
+    | '/transports/taxi'
+    | '/vols/arrivees'
+    | '/vols/compagnies'
+    | '/vols/departs'
   id:
     | '__root__'
     | '/'
@@ -133,18 +276,31 @@ export interface FileRouteTypes {
     | '/preparer'
     | '/transports'
     | '/vols'
+    | '/aeroport/boutiques'
+    | '/aeroport/services'
+    | '/kinshasa/affaires'
+    | '/kinshasa/hotels'
+    | '/kinshasa/visiter'
+    | '/preparer/enregistrement'
+    | '/preparer/familles'
+    | '/preparer/securite'
+    | '/transports/bus'
+    | '/transports/taxi'
+    | '/vols/arrivees'
+    | '/vols/compagnies'
+    | '/vols/departs'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActualitesRoute: typeof ActualitesRoute
-  AeroportRoute: typeof AeroportRoute
+  AeroportRoute: typeof AeroportRouteWithChildren
   DestinationsRoute: typeof DestinationsRoute
-  KinshasaRoute: typeof KinshasaRoute
+  KinshasaRoute: typeof KinshasaRouteWithChildren
   ParkingRoute: typeof ParkingRoute
-  PreparerRoute: typeof PreparerRoute
-  TransportsRoute: typeof TransportsRoute
-  VolsRoute: typeof VolsRoute
+  PreparerRoute: typeof PreparerRouteWithChildren
+  TransportsRoute: typeof TransportsRouteWithChildren
+  VolsRoute: typeof VolsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -212,19 +368,184 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vols/departs': {
+      id: '/vols/departs'
+      path: '/departs'
+      fullPath: '/vols/departs'
+      preLoaderRoute: typeof VolsDepartsRouteImport
+      parentRoute: typeof VolsRoute
+    }
+    '/vols/compagnies': {
+      id: '/vols/compagnies'
+      path: '/compagnies'
+      fullPath: '/vols/compagnies'
+      preLoaderRoute: typeof VolsCompagniesRouteImport
+      parentRoute: typeof VolsRoute
+    }
+    '/vols/arrivees': {
+      id: '/vols/arrivees'
+      path: '/arrivees'
+      fullPath: '/vols/arrivees'
+      preLoaderRoute: typeof VolsArriveesRouteImport
+      parentRoute: typeof VolsRoute
+    }
+    '/transports/taxi': {
+      id: '/transports/taxi'
+      path: '/taxi'
+      fullPath: '/transports/taxi'
+      preLoaderRoute: typeof TransportsTaxiRouteImport
+      parentRoute: typeof TransportsRoute
+    }
+    '/transports/bus': {
+      id: '/transports/bus'
+      path: '/bus'
+      fullPath: '/transports/bus'
+      preLoaderRoute: typeof TransportsBusRouteImport
+      parentRoute: typeof TransportsRoute
+    }
+    '/preparer/securite': {
+      id: '/preparer/securite'
+      path: '/securite'
+      fullPath: '/preparer/securite'
+      preLoaderRoute: typeof PreparerSecuriteRouteImport
+      parentRoute: typeof PreparerRoute
+    }
+    '/preparer/familles': {
+      id: '/preparer/familles'
+      path: '/familles'
+      fullPath: '/preparer/familles'
+      preLoaderRoute: typeof PreparerFamillesRouteImport
+      parentRoute: typeof PreparerRoute
+    }
+    '/preparer/enregistrement': {
+      id: '/preparer/enregistrement'
+      path: '/enregistrement'
+      fullPath: '/preparer/enregistrement'
+      preLoaderRoute: typeof PreparerEnregistrementRouteImport
+      parentRoute: typeof PreparerRoute
+    }
+    '/kinshasa/visiter': {
+      id: '/kinshasa/visiter'
+      path: '/visiter'
+      fullPath: '/kinshasa/visiter'
+      preLoaderRoute: typeof KinshasaVisiterRouteImport
+      parentRoute: typeof KinshasaRoute
+    }
+    '/kinshasa/hotels': {
+      id: '/kinshasa/hotels'
+      path: '/hotels'
+      fullPath: '/kinshasa/hotels'
+      preLoaderRoute: typeof KinshasaHotelsRouteImport
+      parentRoute: typeof KinshasaRoute
+    }
+    '/kinshasa/affaires': {
+      id: '/kinshasa/affaires'
+      path: '/affaires'
+      fullPath: '/kinshasa/affaires'
+      preLoaderRoute: typeof KinshasaAffairesRouteImport
+      parentRoute: typeof KinshasaRoute
+    }
+    '/aeroport/services': {
+      id: '/aeroport/services'
+      path: '/services'
+      fullPath: '/aeroport/services'
+      preLoaderRoute: typeof AeroportServicesRouteImport
+      parentRoute: typeof AeroportRoute
+    }
+    '/aeroport/boutiques': {
+      id: '/aeroport/boutiques'
+      path: '/boutiques'
+      fullPath: '/aeroport/boutiques'
+      preLoaderRoute: typeof AeroportBoutiquesRouteImport
+      parentRoute: typeof AeroportRoute
+    }
   }
 }
+
+interface AeroportRouteChildren {
+  AeroportBoutiquesRoute: typeof AeroportBoutiquesRoute
+  AeroportServicesRoute: typeof AeroportServicesRoute
+}
+
+const AeroportRouteChildren: AeroportRouteChildren = {
+  AeroportBoutiquesRoute: AeroportBoutiquesRoute,
+  AeroportServicesRoute: AeroportServicesRoute,
+}
+
+const AeroportRouteWithChildren = AeroportRoute._addFileChildren(
+  AeroportRouteChildren,
+)
+
+interface KinshasaRouteChildren {
+  KinshasaAffairesRoute: typeof KinshasaAffairesRoute
+  KinshasaHotelsRoute: typeof KinshasaHotelsRoute
+  KinshasaVisiterRoute: typeof KinshasaVisiterRoute
+}
+
+const KinshasaRouteChildren: KinshasaRouteChildren = {
+  KinshasaAffairesRoute: KinshasaAffairesRoute,
+  KinshasaHotelsRoute: KinshasaHotelsRoute,
+  KinshasaVisiterRoute: KinshasaVisiterRoute,
+}
+
+const KinshasaRouteWithChildren = KinshasaRoute._addFileChildren(
+  KinshasaRouteChildren,
+)
+
+interface PreparerRouteChildren {
+  PreparerEnregistrementRoute: typeof PreparerEnregistrementRoute
+  PreparerFamillesRoute: typeof PreparerFamillesRoute
+  PreparerSecuriteRoute: typeof PreparerSecuriteRoute
+}
+
+const PreparerRouteChildren: PreparerRouteChildren = {
+  PreparerEnregistrementRoute: PreparerEnregistrementRoute,
+  PreparerFamillesRoute: PreparerFamillesRoute,
+  PreparerSecuriteRoute: PreparerSecuriteRoute,
+}
+
+const PreparerRouteWithChildren = PreparerRoute._addFileChildren(
+  PreparerRouteChildren,
+)
+
+interface TransportsRouteChildren {
+  TransportsBusRoute: typeof TransportsBusRoute
+  TransportsTaxiRoute: typeof TransportsTaxiRoute
+}
+
+const TransportsRouteChildren: TransportsRouteChildren = {
+  TransportsBusRoute: TransportsBusRoute,
+  TransportsTaxiRoute: TransportsTaxiRoute,
+}
+
+const TransportsRouteWithChildren = TransportsRoute._addFileChildren(
+  TransportsRouteChildren,
+)
+
+interface VolsRouteChildren {
+  VolsArriveesRoute: typeof VolsArriveesRoute
+  VolsCompagniesRoute: typeof VolsCompagniesRoute
+  VolsDepartsRoute: typeof VolsDepartsRoute
+}
+
+const VolsRouteChildren: VolsRouteChildren = {
+  VolsArriveesRoute: VolsArriveesRoute,
+  VolsCompagniesRoute: VolsCompagniesRoute,
+  VolsDepartsRoute: VolsDepartsRoute,
+}
+
+const VolsRouteWithChildren = VolsRoute._addFileChildren(VolsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActualitesRoute: ActualitesRoute,
-  AeroportRoute: AeroportRoute,
+  AeroportRoute: AeroportRouteWithChildren,
   DestinationsRoute: DestinationsRoute,
-  KinshasaRoute: KinshasaRoute,
+  KinshasaRoute: KinshasaRouteWithChildren,
   ParkingRoute: ParkingRoute,
-  PreparerRoute: PreparerRoute,
-  TransportsRoute: TransportsRoute,
-  VolsRoute: VolsRoute,
+  PreparerRoute: PreparerRouteWithChildren,
+  TransportsRoute: TransportsRouteWithChildren,
+  VolsRoute: VolsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
