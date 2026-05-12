@@ -108,7 +108,8 @@ export function Header() {
                 </div>
               )}
             </div>
-          ))}
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-4">
