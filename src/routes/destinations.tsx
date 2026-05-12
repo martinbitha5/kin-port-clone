@@ -17,6 +17,17 @@ export const Route = createFileRoute("/destinations")({
   component: Destinations,
 });
 
+const congo = [
+  { name: "Lubumbashi", code: "FBM", desc: "Capitale du Katanga, cœur minier", airline: "Congo Airways", duration: "2h05" },
+  { name: "Goma", code: "GOM", desc: "Au pied du volcan Nyiragongo", airline: "Congo Airways", duration: "2h25" },
+  { name: "Kisangani", code: "FKI", desc: "Carrefour fluvial sur le Congo", airline: "Congo Airways", duration: "1h55" },
+  { name: "Mbuji-Mayi", code: "MJM", desc: "Capitale du diamant", airline: "CAA", duration: "1h45" },
+  { name: "Bukavu", code: "BKY", desc: "Sur les rives du lac Kivu", airline: "CAA", duration: "2h30" },
+  { name: "Kindu", code: "KND", desc: "Sur le fleuve Congo, Maniema", airline: "Congo Airways", duration: "1h50" },
+  { name: "Mbandaka", code: "MDK", desc: "Porte de l'Équateur", airline: "CAA", duration: "1h20" },
+  { name: "Matadi", code: "MAT", desc: "Grand port du Congo central", airline: "Congo Airways", duration: "0h55" },
+];
+
 const dests = [
   { img: paris, name: "Paris", country: "France", desc: "Capitale lumineuse, art & gastronomie", airlines: ["Air France"], duration: "8h05" },
   { img: brussels, name: "Bruxelles", country: "Belgique", desc: "Cœur historique de l'Europe", airlines: ["Brussels Airlines"], duration: "8h20" },
