@@ -68,6 +68,27 @@ function Destinations() {
           </article>
         ))}
       </div>
+
+      <section className="mt-20">
+        <span className="text-accent text-xs font-bold tracking-[0.3em] uppercase">Réseau domestique</span>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-primary mt-2">Vols intérieurs RDC</h2>
+        <p className="mt-3 text-muted-foreground max-w-2xl">Depuis Kinshasa, rejoignez les principales villes de la République démocratique du Congo.</p>
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {congo.map((c) => (
+            <div key={c.code} className="bg-card border border-border rounded-2xl p-5 hover:shadow-[var(--shadow-card)] hover:border-accent/40 transition">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-extrabold text-primary">{c.name}</h3>
+                <span className="text-[10px] font-mono bg-secondary px-2 py-1 rounded">{c.code}</span>
+              </div>
+              <p className="mt-2 text-sm text-muted-foreground">{c.desc}</p>
+              <div className="mt-4 flex items-center justify-between text-xs border-t border-border pt-3">
+                <span className="text-accent font-bold inline-flex items-center gap-1"><Plane className="h-3 w-3" />{c.duration}</span>
+                <span className="text-muted-foreground">{c.airline}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
