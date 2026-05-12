@@ -77,7 +77,9 @@ export function Header() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" onMouseLeave={() => setHover(null)}>
-          {nav.map((n) => (
+          {nav.map((n, i) => {
+            const isLast = i >= nav.length - 2;
+            return (
             <div key={n.to} className="relative" onMouseEnter={() => setHover(n.to)}>
               <Link
                 to={n.to}
@@ -89,7 +91,7 @@ export function Header() {
               </Link>
 
               {hover === n.to && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[480px]">
+                <div className={`absolute top-full pt-3 w-[420px] ${isLast ? "right-0" : "left-1/2 -translate-x-1/2"}`}>
                   <div className="bg-card border border-border rounded-2xl shadow-[var(--shadow-card)] p-3 grid grid-cols-1 gap-1">
                     {n.sub.map((s) => (
                       <Link
@@ -106,7 +108,8 @@ export function Header() {
                 </div>
               )}
             </div>
-          ))}
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-4">
