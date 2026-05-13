@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Plane, Menu, User, HelpCircle, ChevronDown } from "lucide-react";
+import { Menu, User, HelpCircle, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import logoTower from "@/assets/logo-tower.png";
 
 type SubItem = { to: string; label: string; desc?: string };
 type NavItem = { to: string; label: string; sub: SubItem[] };
@@ -67,9 +68,7 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
       <div className="mx-auto max-w-7xl px-4 lg:px-8 h-20 flex items-center justify-between gap-6">
         <Link to="/" className="flex items-center gap-3 shrink-0">
-          <div className="grid place-items-center h-11 w-11 rounded-md bg-primary text-primary-foreground">
-            <Plane className="h-6 w-6" strokeWidth={2.5} />
-          </div>
+          <img src={logoTower} alt="Tour de contrôle FIH" width={44} height={44} className="h-11 w-11 object-contain" />
           <div className="leading-tight">
             <div className="font-extrabold tracking-tight text-primary text-lg">KIN</div>
             <div className="text-[11px] uppercase tracking-[0.2em] text-accent font-bold">Aéroport</div>
