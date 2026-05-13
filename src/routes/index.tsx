@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, Bus, Car, ParkingCircle, Train, Clock, ChevronRight, MapPin } from "lucide-react";
+import { ArrowRight, Bus, Car, ParkingCircle, Train, Clock, ChevronRight, MapPin, Bell } from "lucide-react";
 import { FlightSearch } from "@/components/site/FlightSearch";
 import { HeroSlider } from "@/components/site/HeroSlider";
 import heroImg from "@/assets/hero-fih-1.jpg";
