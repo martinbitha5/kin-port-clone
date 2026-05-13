@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, Bus, Car, ParkingCircle, Train, Clock, ChevronRight, MapPin, Bell } from "lucide-react";
+import { ArrowRight, Bus, Car, ParkingCircle, Train, Clock, ChevronRight, MapPin } from "lucide-react";
 import { FlightSearch } from "@/components/site/FlightSearch";
-import heroImg from "@/assets/hero-kinshasa.jpg";
-import terminalImg from "@/assets/terminal.jpg";
-import planeImg from "@/assets/plane.jpg";
+import { HeroSlider } from "@/components/site/HeroSlider";
+import heroImg from "@/assets/hero-fih-1.jpg";
+import terminalImg from "@/assets/hero-fih-2.jpg";
+import planeImg from "@/assets/hero-fih-3.jpg";
 import paris from "@/assets/dest-paris.jpg";
 import brussels from "@/assets/dest-brussels.jpg";
 import dubai from "@/assets/dest-dubai.jpg";
@@ -40,28 +41,7 @@ function Index() {
 
   return (
     <main>
-      {/* HERO */}
-      <section className="relative h-[640px] md:h-[720px] overflow-hidden">
-        <img src={heroImg} alt="Kinshasa skyline" width={1920} height={1024} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-        <div className="absolute inset-0 bg-primary/30" />
-        <div className="relative mx-auto max-w-7xl px-4 lg:px-8 h-full flex flex-col justify-end pb-32">
-          <span className="text-primary-foreground/90 text-xs font-bold tracking-[0.3em] uppercase mb-3">Vous Accueillir</span>
-          <h1 className="text-primary-foreground text-5xl md:text-7xl font-extrabold tracking-tight max-w-3xl">
-            Bienvenue à <span className="text-accent">Kinshasa</span>
-          </h1>
-          <p className="text-primary-foreground/90 mt-4 max-w-xl text-lg">
-            Porte d'entrée de la République Démocratique du Congo, l'aéroport international de N'djili vous accueille 24h/24.
-          </p>
-          <div className="mt-8">
-            <button className="grid place-items-center h-14 w-14 rounded-full bg-accent text-accent-foreground hover:scale-110 transition shadow-[var(--shadow-card)]">
-              <ArrowRight className="h-6 w-6" />
-            </button>
-          </div>
-        </div>
-        {/* Decorative blob */}
-        <div className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-primary opacity-90" />
-      </section>
+      <HeroSlider />
 
       {/* FLIGHT SEARCH */}
       <FlightSearch />
