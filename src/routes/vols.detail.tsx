@@ -60,7 +60,6 @@ function Page() {
   return (
     <main className="bg-secondary/30 min-h-screen pb-20">
       <section className="relative bg-primary text-primary-foreground">
-        <div className="absolute inset-0 bg-[url('/src/assets/hero-fih-2.jpg')] bg-cover bg-center opacity-20" />
         <div className="relative mx-auto max-w-7xl px-6 py-16">
           <Link to={type === "departure" ? "/vols/departs" : "/vols/arrivees"} className="inline-flex items-center gap-2 text-xs text-accent font-bold tracking-[0.3em] uppercase">
             <ArrowLeft className="h-3.5 w-3.5" /> Retour {type === "departure" ? "aux départs" : "aux arrivées"}
