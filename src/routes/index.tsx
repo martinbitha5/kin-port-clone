@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, Bus, Car, ParkingCircle, Train, Clock, ChevronRight, MapPin, Bell } from "lucide-react";
+import { ArrowRight, Bus, Car, ParkingCircle, Train, Clock, MapPin, Bell } from "lucide-react";
 import { FlightSearch } from "@/components/site/FlightSearch";
 import { HeroSlider } from "@/components/site/HeroSlider";
+import { NextDepartures } from "@/components/site/NextDepartures";
 import heroImg from "@/assets/hero-fih-1.jpg";
 import terminalImg from "@/assets/hero-fih-2.jpg";
 import planeImg from "@/assets/hero-fih-3.jpg";
@@ -79,34 +80,8 @@ function Index() {
               </div>
             </div>
 
-            <div className="lg:col-span-2 bg-card rounded-2xl shadow-[var(--shadow-card)] border border-border overflow-hidden">
-              <div className="px-6 py-4 border-b border-border flex items-center justify-between">
-                <h3 className="font-bold text-primary">Prochains départs</h3>
-                <Link to="/" className="text-xs font-bold text-accent inline-flex items-center gap-1 hover:gap-2 transition-all">
-                  Tous les vols <ChevronRight className="h-3 w-3" />
-                </Link>
-              </div>
-              <ul className="divide-y divide-border">
-                {flights.map((f) => (
-                  <li key={f.code} className="px-6 py-4 flex items-center justify-between gap-4 hover:bg-secondary/40 transition">
-                    <div className="flex items-center gap-4">
-                      <span className="font-mono font-bold text-primary text-sm">{f.code}</span>
-                      <div>
-                        <p className="font-semibold text-primary">{f.city}</p>
-                        <p className="text-xs text-muted-foreground">Terminal {f.terminal}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-6">
-                      <span className="font-bold text-primary text-lg tabular-nums">{f.time}</span>
-                      <span className={`text-xs font-bold px-3 py-1 rounded-full ${
-                        f.status === "Retardé" ? "bg-accent/10 text-accent" :
-                        f.status === "Embarquement" ? "bg-primary text-primary-foreground" :
-                        "bg-secondary text-primary"
-                      }`}>{f.status}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+            <div className="lg:col-span-2">
+              <NextDepartures />
             </div>
           </div>
         </div>
