@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { Search, Clock, Loader2, ArrowRight, Plane } from "lucide-react";
+import { Search, Clock, Loader2, ArrowRight } from "lucide-react";
 import { getFlights, type FlightRow } from "@/lib/flights.functions";
+import { AirlineLogo } from "@/components/site/AirlineLogo";
 
 type Props = { type: "departure" | "arrival" };
 
@@ -86,11 +88,15 @@ export function FlightsBoard({ type }: Props) {
           const fromIata = type === "departure" ? fromLabel : f.iata;
           const toIata = type === "departure" ? f.iata : toLabel;
           return (
-            <div key={i} className="bg-card rounded-2xl border border-border hover:border-accent/40 hover:shadow-[var(--shadow-card)] transition grid grid-cols-12 items-center gap-4 px-4 md:px-6 py-4">
-              {/* Airline card */}
+            <Link
+              key={i}
+              to="/vols/detail"
+              search={{ type, flight: f.flight, scheduled: f.scheduled }}
+              className="block bg-card rounded-2xl border border-border hover:border-accent/40 hover:shadow-[var(--shadow-card)] transition grid grid-cols-12 items-center gap-4 px-4 md:px-6 py-4"
+            >
               <div className="col-span-12 md:col-span-3 flex items-center gap-3">
-                <div className="h-14 w-24 rounded-md bg-primary/5 border border-border flex items-center justify-center">
-                  <Plane className="h-5 w-5 text-primary/60" />
+                <div className="h-14 w-24 rounded-md bg-primary/5 border border-border flex items-center justify-center p-2">
+                  <AirlineLogo iata={f.airlineIata} name={f.airline} className="max-h-10 w-auto" />
                 </div>
                 <div className="min-w-0">
                   <p className="font-mono font-bold text-primary text-sm truncate">{f.flight}</p>
@@ -98,30 +104,26 @@ export function FlightsBoard({ type }: Props) {
                 </div>
               </div>
 
-              {/* Time */}
               <div className="col-span-4 md:col-span-2">
                 <p className="text-2xl md:text-3xl font-extrabold text-primary tabular-nums leading-none">{f.time}</p>
                 <p className="text-xs text-muted-foreground mt-1">{dateStr}</p>
               </div>
 
-              {/* City */}
               <div className="col-span-8 md:col-span-3">
                 <p className="font-extrabold text-primary uppercase tracking-wide truncate">{f.city}</p>
                 <p className="text-xs text-muted-foreground mt-1 font-mono">{fromIata} {arrowDir} {toIata}</p>
               </div>
 
-              {/* Status */}
               <div className="col-span-10 md:col-span-3 flex md:justify-end">
                 <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold ${statusTone(f.status)}`}>
                   <span className="h-2 w-2 rounded-full bg-current" /> {f.status}
                 </span>
               </div>
 
-              {/* Arrow */}
               <div className="col-span-2 md:col-span-1 flex justify-end">
                 <ArrowRight className="h-5 w-5 text-accent" />
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

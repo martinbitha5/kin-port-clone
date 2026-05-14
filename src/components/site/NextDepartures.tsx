@@ -39,18 +39,24 @@ export function NextDepartures() {
       ) : (
         <ul className="divide-y divide-border">
           {rows.map((f, i) => (
-            <li key={i} className="px-6 py-4 flex items-center justify-between gap-4 hover:bg-secondary/40 transition">
-              <div className="flex items-center gap-4">
-                <span className="font-mono font-bold text-primary text-sm">{f.flight}</span>
-                <div>
-                  <p className="font-semibold text-primary">{f.city} <span className="text-xs text-muted-foreground font-mono">({f.iata})</span></p>
-                  <p className="text-xs text-muted-foreground">{f.airline}</p>
+            <li key={i}>
+              <Link
+                to="/vols/detail"
+                search={{ type: "departure", flight: f.flight, scheduled: f.scheduled }}
+                className="px-6 py-4 flex items-center justify-between gap-4 hover:bg-secondary/40 transition"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="font-mono font-bold text-primary text-sm">{f.flight}</span>
+                  <div>
+                    <p className="font-semibold text-primary">{f.city} <span className="text-xs text-muted-foreground font-mono">({f.iata})</span></p>
+                    <p className="text-xs text-muted-foreground">{f.airline}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-6">
-                <span className="font-bold text-primary text-lg tabular-nums">{f.time}</span>
-                <span className="text-xs font-bold px-3 py-1 rounded-full bg-secondary text-primary">{f.status}</span>
-              </div>
+                <div className="flex items-center gap-6">
+                  <span className="font-bold text-primary text-lg tabular-nums">{f.time}</span>
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-secondary text-primary">{f.status}</span>
+                </div>
+              </Link>
             </li>
           ))}
         </ul>
