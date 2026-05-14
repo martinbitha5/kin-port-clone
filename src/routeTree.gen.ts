@@ -18,6 +18,7 @@ import { Route as DestinationsRouteImport } from './routes/destinations'
 import { Route as AeroportRouteImport } from './routes/aeroport'
 import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VolsDetailRouteImport } from './routes/vols.detail'
 import { Route as VolsDepartsRouteImport } from './routes/vols.departs'
 import { Route as VolsCompagniesRouteImport } from './routes/vols.compagnies'
 import { Route as VolsArriveesRouteImport } from './routes/vols.arrivees'
@@ -76,6 +77,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const VolsDetailRoute = VolsDetailRouteImport.update({
+  id: '/detail',
+  path: '/detail',
+  getParentRoute: () => VolsRoute,
 } as any)
 const VolsDepartsRoute = VolsDepartsRouteImport.update({
   id: '/departs',
@@ -166,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/vols/arrivees': typeof VolsArriveesRoute
   '/vols/compagnies': typeof VolsCompagniesRoute
   '/vols/departs': typeof VolsDepartsRoute
+  '/vols/detail': typeof VolsDetailRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -190,6 +197,7 @@ export interface FileRoutesByTo {
   '/vols/arrivees': typeof VolsArriveesRoute
   '/vols/compagnies': typeof VolsCompagniesRoute
   '/vols/departs': typeof VolsDepartsRoute
+  '/vols/detail': typeof VolsDetailRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -215,6 +223,7 @@ export interface FileRoutesById {
   '/vols/arrivees': typeof VolsArriveesRoute
   '/vols/compagnies': typeof VolsCompagniesRoute
   '/vols/departs': typeof VolsDepartsRoute
+  '/vols/detail': typeof VolsDetailRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -241,6 +250,7 @@ export interface FileRouteTypes {
     | '/vols/arrivees'
     | '/vols/compagnies'
     | '/vols/departs'
+    | '/vols/detail'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -265,6 +275,7 @@ export interface FileRouteTypes {
     | '/vols/arrivees'
     | '/vols/compagnies'
     | '/vols/departs'
+    | '/vols/detail'
   id:
     | '__root__'
     | '/'
@@ -289,6 +300,7 @@ export interface FileRouteTypes {
     | '/vols/arrivees'
     | '/vols/compagnies'
     | '/vols/departs'
+    | '/vols/detail'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -367,6 +379,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/vols/detail': {
+      id: '/vols/detail'
+      path: '/detail'
+      fullPath: '/vols/detail'
+      preLoaderRoute: typeof VolsDetailRouteImport
+      parentRoute: typeof VolsRoute
     }
     '/vols/departs': {
       id: '/vols/departs'
@@ -526,12 +545,14 @@ interface VolsRouteChildren {
   VolsArriveesRoute: typeof VolsArriveesRoute
   VolsCompagniesRoute: typeof VolsCompagniesRoute
   VolsDepartsRoute: typeof VolsDepartsRoute
+  VolsDetailRoute: typeof VolsDetailRoute
 }
 
 const VolsRouteChildren: VolsRouteChildren = {
   VolsArriveesRoute: VolsArriveesRoute,
   VolsCompagniesRoute: VolsCompagniesRoute,
   VolsDepartsRoute: VolsDepartsRoute,
+  VolsDetailRoute: VolsDetailRoute,
 }
 
 const VolsRouteWithChildren = VolsRoute._addFileChildren(VolsRouteChildren)
