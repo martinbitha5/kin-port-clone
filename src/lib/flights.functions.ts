@@ -95,6 +95,20 @@ async function fetchFromAviationstack(type: "departure" | "arrival"): Promise<Fl
   }
 }
 
+/**
+ * Build a Paris-Aéroport-style cKey:
+ *   YYYYMMDD + AIRLINE_IATA + FLIGHT_NUMBER + DEP_IATA + ARR_IATA
+ * Example: 20260513UU975RUNCDG
+ */
+export function buildCKey(row: Pick<FlightRow, "scheduled" | "flight" | "depIata" | "arrIata">): string {
+  const d = new Date(row.scheduled);
+  const ymd = isNaN(d.getTime()) ? "00000000" : d.toISOString().slice(0, 10).replace(/-/g, "");
+  const code = (row.flight || "").replace(/\s+/g, "").toUpperCase();
+  const dep = (row.depIata || "").toUpperCase();
+  const arr = (row.arrIata || "").toUpperCase();
+  return `${ymd}${code}${dep}${arr}`;
+}
+
 export const getFlights = createServerFn({ method: "GET" })
   .inputValidator((data: { type: "departure" | "arrival" }) => data)
   .handler(async ({ data }) => {
