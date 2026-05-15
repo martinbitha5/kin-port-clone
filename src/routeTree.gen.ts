@@ -15,6 +15,7 @@ import { Route as PreparerRouteImport } from './routes/preparer'
 import { Route as ParkingRouteImport } from './routes/parking'
 import { Route as KinshasaRouteImport } from './routes/kinshasa'
 import { Route as DestinationsRouteImport } from './routes/destinations'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AeroportRouteImport } from './routes/aeroport'
 import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as IndexRouteImport } from './routes/index'
@@ -61,6 +62,11 @@ const KinshasaRoute = KinshasaRouteImport.update({
 const DestinationsRoute = DestinationsRouteImport.update({
   id: '/destinations',
   path: '/destinations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AeroportRoute = AeroportRouteImport.update({
@@ -153,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
+  '/contact': typeof ContactRoute
   '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
@@ -178,6 +185,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
+  '/contact': typeof ContactRoute
   '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
@@ -204,6 +212,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
+  '/contact': typeof ContactRoute
   '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
@@ -231,6 +240,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/aeroport'
+    | '/contact'
     | '/destinations'
     | '/kinshasa'
     | '/parking'
@@ -256,6 +266,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/aeroport'
+    | '/contact'
     | '/destinations'
     | '/kinshasa'
     | '/parking'
@@ -281,6 +292,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/aeroport'
+    | '/contact'
     | '/destinations'
     | '/kinshasa'
     | '/parking'
@@ -307,6 +319,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActualitesRoute: typeof ActualitesRoute
   AeroportRoute: typeof AeroportRouteWithChildren
+  ContactRoute: typeof ContactRoute
   DestinationsRoute: typeof DestinationsRoute
   KinshasaRoute: typeof KinshasaRouteWithChildren
   ParkingRoute: typeof ParkingRoute
@@ -357,6 +370,13 @@ declare module '@tanstack/react-router' {
       path: '/destinations'
       fullPath: '/destinations'
       preLoaderRoute: typeof DestinationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aeroport': {
@@ -561,6 +581,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActualitesRoute: ActualitesRoute,
   AeroportRoute: AeroportRouteWithChildren,
+  ContactRoute: ContactRoute,
   DestinationsRoute: DestinationsRoute,
   KinshasaRoute: KinshasaRouteWithChildren,
   ParkingRoute: ParkingRoute,
