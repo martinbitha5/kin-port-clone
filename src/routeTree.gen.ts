@@ -20,6 +20,7 @@ import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as MagazineRouteImport } from './routes/magazine'
 import { Route as KinshasaRouteImport } from './routes/kinshasa'
 import { Route as DestinationsRouteImport } from './routes/destinations'
+import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AeroportRouteImport } from './routes/aeroport'
 import { Route as ActualitesRouteImport } from './routes/actualites'
@@ -92,6 +93,11 @@ const KinshasaRoute = KinshasaRouteImport.update({
 const DestinationsRoute = DestinationsRouteImport.update({
   id: '/destinations',
   path: '/destinations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -190,6 +196,7 @@ export interface FileRoutesByFullPath {
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/magazine': typeof MagazineRoute
@@ -221,6 +228,7 @@ export interface FileRoutesByTo {
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/magazine': typeof MagazineRoute
@@ -253,6 +261,7 @@ export interface FileRoutesById {
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
   '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/magazine': typeof MagazineRoute
@@ -286,6 +295,7 @@ export interface FileRouteTypes {
     | '/actualites'
     | '/aeroport'
     | '/contact'
+    | '/cookies'
     | '/destinations'
     | '/kinshasa'
     | '/magazine'
@@ -317,6 +327,7 @@ export interface FileRouteTypes {
     | '/actualites'
     | '/aeroport'
     | '/contact'
+    | '/cookies'
     | '/destinations'
     | '/kinshasa'
     | '/magazine'
@@ -348,6 +359,7 @@ export interface FileRouteTypes {
     | '/actualites'
     | '/aeroport'
     | '/contact'
+    | '/cookies'
     | '/destinations'
     | '/kinshasa'
     | '/magazine'
@@ -380,6 +392,7 @@ export interface RootRouteChildren {
   ActualitesRoute: typeof ActualitesRoute
   AeroportRoute: typeof AeroportRouteWithChildren
   ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
   DestinationsRoute: typeof DestinationsRoute
   KinshasaRoute: typeof KinshasaRouteWithChildren
   MagazineRoute: typeof MagazineRoute
@@ -470,6 +483,13 @@ declare module '@tanstack/react-router' {
       path: '/destinations'
       fullPath: '/destinations'
       preLoaderRoute: typeof DestinationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -682,6 +702,7 @@ const rootRouteChildren: RootRouteChildren = {
   ActualitesRoute: ActualitesRoute,
   AeroportRoute: AeroportRouteWithChildren,
   ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
   DestinationsRoute: DestinationsRoute,
   KinshasaRoute: KinshasaRouteWithChildren,
   MagazineRoute: MagazineRoute,
