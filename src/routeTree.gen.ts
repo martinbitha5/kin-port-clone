@@ -11,10 +11,18 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VolsRouteImport } from './routes/vols'
 import { Route as TransportsRouteImport } from './routes/transports'
+import { Route as RegieRouteImport } from './routes/regie'
+import { Route as RecrutementRouteImport } from './routes/recrutement'
+import { Route as PresseRouteImport } from './routes/presse'
 import { Route as PreparerRouteImport } from './routes/preparer'
 import { Route as ParkingRouteImport } from './routes/parking'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as MagazineRouteImport } from './routes/magazine'
 import { Route as KinshasaRouteImport } from './routes/kinshasa'
 import { Route as DestinationsRouteImport } from './routes/destinations'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConfidentialiteRouteImport } from './routes/confidentialite'
 import { Route as AeroportRouteImport } from './routes/aeroport'
 import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as IndexRouteImport } from './routes/index'
@@ -43,6 +51,21 @@ const TransportsRoute = TransportsRouteImport.update({
   path: '/transports',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegieRoute = RegieRouteImport.update({
+  id: '/regie',
+  path: '/regie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecrutementRoute = RecrutementRouteImport.update({
+  id: '/recrutement',
+  path: '/recrutement',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PresseRoute = PresseRouteImport.update({
+  id: '/presse',
+  path: '/presse',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PreparerRoute = PreparerRouteImport.update({
   id: '/preparer',
   path: '/preparer',
@@ -53,6 +76,16 @@ const ParkingRoute = ParkingRouteImport.update({
   path: '/parking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MagazineRoute = MagazineRouteImport.update({
+  id: '/magazine',
+  path: '/magazine',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KinshasaRoute = KinshasaRouteImport.update({
   id: '/kinshasa',
   path: '/kinshasa',
@@ -61,6 +94,21 @@ const KinshasaRoute = KinshasaRouteImport.update({
 const DestinationsRoute = DestinationsRouteImport.update({
   id: '/destinations',
   path: '/destinations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfidentialiteRoute = ConfidentialiteRouteImport.update({
+  id: '/confidentialite',
+  path: '/confidentialite',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AeroportRoute = AeroportRouteImport.update({
@@ -153,10 +201,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
+  '/confidentialite': typeof ConfidentialiteRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRouteWithChildren
+  '/magazine': typeof MagazineRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRouteWithChildren
+  '/presse': typeof PresseRoute
+  '/recrutement': typeof RecrutementRoute
+  '/regie': typeof RegieRoute
   '/transports': typeof TransportsRouteWithChildren
   '/vols': typeof VolsRouteWithChildren
   '/aeroport/boutiques': typeof AeroportBoutiquesRoute
@@ -178,10 +234,18 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
+  '/confidentialite': typeof ConfidentialiteRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRouteWithChildren
+  '/magazine': typeof MagazineRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRouteWithChildren
+  '/presse': typeof PresseRoute
+  '/recrutement': typeof RecrutementRoute
+  '/regie': typeof RegieRoute
   '/transports': typeof TransportsRouteWithChildren
   '/vols': typeof VolsRouteWithChildren
   '/aeroport/boutiques': typeof AeroportBoutiquesRoute
@@ -204,10 +268,18 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
+  '/confidentialite': typeof ConfidentialiteRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
   '/destinations': typeof DestinationsRoute
   '/kinshasa': typeof KinshasaRouteWithChildren
+  '/magazine': typeof MagazineRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRouteWithChildren
+  '/presse': typeof PresseRoute
+  '/recrutement': typeof RecrutementRoute
+  '/regie': typeof RegieRoute
   '/transports': typeof TransportsRouteWithChildren
   '/vols': typeof VolsRouteWithChildren
   '/aeroport/boutiques': typeof AeroportBoutiquesRoute
@@ -231,10 +303,18 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/aeroport'
+    | '/confidentialite'
+    | '/contact'
+    | '/cookies'
     | '/destinations'
     | '/kinshasa'
+    | '/magazine'
+    | '/mentions-legales'
     | '/parking'
     | '/preparer'
+    | '/presse'
+    | '/recrutement'
+    | '/regie'
     | '/transports'
     | '/vols'
     | '/aeroport/boutiques'
@@ -256,10 +336,18 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/aeroport'
+    | '/confidentialite'
+    | '/contact'
+    | '/cookies'
     | '/destinations'
     | '/kinshasa'
+    | '/magazine'
+    | '/mentions-legales'
     | '/parking'
     | '/preparer'
+    | '/presse'
+    | '/recrutement'
+    | '/regie'
     | '/transports'
     | '/vols'
     | '/aeroport/boutiques'
@@ -281,10 +369,18 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/aeroport'
+    | '/confidentialite'
+    | '/contact'
+    | '/cookies'
     | '/destinations'
     | '/kinshasa'
+    | '/magazine'
+    | '/mentions-legales'
     | '/parking'
     | '/preparer'
+    | '/presse'
+    | '/recrutement'
+    | '/regie'
     | '/transports'
     | '/vols'
     | '/aeroport/boutiques'
@@ -307,10 +403,18 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActualitesRoute: typeof ActualitesRoute
   AeroportRoute: typeof AeroportRouteWithChildren
+  ConfidentialiteRoute: typeof ConfidentialiteRoute
+  ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
   DestinationsRoute: typeof DestinationsRoute
   KinshasaRoute: typeof KinshasaRouteWithChildren
+  MagazineRoute: typeof MagazineRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
   ParkingRoute: typeof ParkingRoute
   PreparerRoute: typeof PreparerRouteWithChildren
+  PresseRoute: typeof PresseRoute
+  RecrutementRoute: typeof RecrutementRoute
+  RegieRoute: typeof RegieRoute
   TransportsRoute: typeof TransportsRouteWithChildren
   VolsRoute: typeof VolsRouteWithChildren
 }
@@ -331,6 +435,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TransportsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/regie': {
+      id: '/regie'
+      path: '/regie'
+      fullPath: '/regie'
+      preLoaderRoute: typeof RegieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recrutement': {
+      id: '/recrutement'
+      path: '/recrutement'
+      fullPath: '/recrutement'
+      preLoaderRoute: typeof RecrutementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/presse': {
+      id: '/presse'
+      path: '/presse'
+      fullPath: '/presse'
+      preLoaderRoute: typeof PresseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/preparer': {
       id: '/preparer'
       path: '/preparer'
@@ -345,6 +470,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParkingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/magazine': {
+      id: '/magazine'
+      path: '/magazine'
+      fullPath: '/magazine'
+      preLoaderRoute: typeof MagazineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kinshasa': {
       id: '/kinshasa'
       path: '/kinshasa'
@@ -357,6 +496,27 @@ declare module '@tanstack/react-router' {
       path: '/destinations'
       fullPath: '/destinations'
       preLoaderRoute: typeof DestinationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confidentialite': {
+      id: '/confidentialite'
+      path: '/confidentialite'
+      fullPath: '/confidentialite'
+      preLoaderRoute: typeof ConfidentialiteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aeroport': {
@@ -561,10 +721,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActualitesRoute: ActualitesRoute,
   AeroportRoute: AeroportRouteWithChildren,
+  ConfidentialiteRoute: ConfidentialiteRoute,
+  ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
   DestinationsRoute: DestinationsRoute,
   KinshasaRoute: KinshasaRouteWithChildren,
+  MagazineRoute: MagazineRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
   ParkingRoute: ParkingRoute,
   PreparerRoute: PreparerRouteWithChildren,
+  PresseRoute: PresseRoute,
+  RecrutementRoute: RecrutementRoute,
+  RegieRoute: RegieRoute,
   TransportsRoute: TransportsRouteWithChildren,
   VolsRoute: VolsRouteWithChildren,
 }
