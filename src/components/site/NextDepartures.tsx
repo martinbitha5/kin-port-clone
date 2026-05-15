@@ -43,19 +43,19 @@ export function NextDepartures() {
             <li key={i}>
               <Link
                 to="/vols/detail"
-                search={{ type: "departure", flight: f.flight, scheduled: f.scheduled }}
+                search={{ type: "departure", flight: f.flight, scheduled: f.scheduled, cKey: buildCKey(f) }}
                 className="px-6 py-4 flex items-center justify-between gap-4 hover:bg-secondary/40 transition"
               >
-                <div className="flex items-center gap-4">
-                  <span className="font-mono font-bold text-primary text-sm">{f.flight}</span>
-                  <div>
-                    <p className="font-semibold text-primary">{f.city} <span className="text-xs text-muted-foreground font-mono">({f.iata})</span></p>
-                    <p className="text-xs text-muted-foreground">{f.airline}</p>
+                <div className="flex items-center gap-4 min-w-0">
+                  <AirlineLogo iata={f.airlineIata} name={f.airline} width={64} height={24} />
+                  <div className="min-w-0">
+                    <p className="font-mono font-bold text-primary text-sm">{f.flight}</p>
+                    <p className="font-semibold text-primary truncate">{f.city} <span className="text-xs text-muted-foreground font-mono">({f.iata})</span></p>
                   </div>
                 </div>
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-4 shrink-0">
                   <span className="font-bold text-primary text-lg tabular-nums">{f.time}</span>
-                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-secondary text-primary">{f.status}</span>
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-secondary text-primary hidden sm:inline">{f.status}</span>
                 </div>
               </Link>
             </li>
