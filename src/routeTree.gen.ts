@@ -22,6 +22,7 @@ import { Route as KinshasaRouteImport } from './routes/kinshasa'
 import { Route as DestinationsRouteImport } from './routes/destinations'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConfidentialiteRouteImport } from './routes/confidentialite'
 import { Route as AeroportRouteImport } from './routes/aeroport'
 import { Route as ActualitesRouteImport } from './routes/actualites'
 import { Route as IndexRouteImport } from './routes/index'
@@ -103,6 +104,11 @@ const CookiesRoute = CookiesRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfidentialiteRoute = ConfidentialiteRouteImport.update({
+  id: '/confidentialite',
+  path: '/confidentialite',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AeroportRoute = AeroportRouteImport.update({
@@ -195,6 +201,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
+  '/confidentialite': typeof ConfidentialiteRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/destinations': typeof DestinationsRoute
@@ -227,6 +234,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
+  '/confidentialite': typeof ConfidentialiteRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/destinations': typeof DestinationsRoute
@@ -260,6 +268,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/actualites': typeof ActualitesRoute
   '/aeroport': typeof AeroportRouteWithChildren
+  '/confidentialite': typeof ConfidentialiteRoute
   '/contact': typeof ContactRoute
   '/cookies': typeof CookiesRoute
   '/destinations': typeof DestinationsRoute
@@ -294,6 +303,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/aeroport'
+    | '/confidentialite'
     | '/contact'
     | '/cookies'
     | '/destinations'
@@ -326,6 +336,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/aeroport'
+    | '/confidentialite'
     | '/contact'
     | '/cookies'
     | '/destinations'
@@ -358,6 +369,7 @@ export interface FileRouteTypes {
     | '/'
     | '/actualites'
     | '/aeroport'
+    | '/confidentialite'
     | '/contact'
     | '/cookies'
     | '/destinations'
@@ -391,6 +403,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActualitesRoute: typeof ActualitesRoute
   AeroportRoute: typeof AeroportRouteWithChildren
+  ConfidentialiteRoute: typeof ConfidentialiteRoute
   ContactRoute: typeof ContactRoute
   CookiesRoute: typeof CookiesRoute
   DestinationsRoute: typeof DestinationsRoute
@@ -497,6 +510,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confidentialite': {
+      id: '/confidentialite'
+      path: '/confidentialite'
+      fullPath: '/confidentialite'
+      preLoaderRoute: typeof ConfidentialiteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aeroport': {
@@ -701,6 +721,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActualitesRoute: ActualitesRoute,
   AeroportRoute: AeroportRouteWithChildren,
+  ConfidentialiteRoute: ConfidentialiteRoute,
   ContactRoute: ContactRoute,
   CookiesRoute: CookiesRoute,
   DestinationsRoute: DestinationsRoute,
