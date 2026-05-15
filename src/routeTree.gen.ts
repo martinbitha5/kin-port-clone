@@ -13,6 +13,7 @@ import { Route as VolsRouteImport } from './routes/vols'
 import { Route as TransportsRouteImport } from './routes/transports'
 import { Route as RegieRouteImport } from './routes/regie'
 import { Route as RecrutementRouteImport } from './routes/recrutement'
+import { Route as PresseRouteImport } from './routes/presse'
 import { Route as PreparerRouteImport } from './routes/preparer'
 import { Route as ParkingRouteImport } from './routes/parking'
 import { Route as KinshasaRouteImport } from './routes/kinshasa'
@@ -54,6 +55,11 @@ const RegieRoute = RegieRouteImport.update({
 const RecrutementRoute = RecrutementRouteImport.update({
   id: '/recrutement',
   path: '/recrutement',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PresseRoute = PresseRouteImport.update({
+  id: '/presse',
+  path: '/presse',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PreparerRoute = PreparerRouteImport.update({
@@ -176,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRouteWithChildren
+  '/presse': typeof PresseRoute
   '/recrutement': typeof RecrutementRoute
   '/regie': typeof RegieRoute
   '/transports': typeof TransportsRouteWithChildren
@@ -204,6 +211,7 @@ export interface FileRoutesByTo {
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRouteWithChildren
+  '/presse': typeof PresseRoute
   '/recrutement': typeof RecrutementRoute
   '/regie': typeof RegieRoute
   '/transports': typeof TransportsRouteWithChildren
@@ -233,6 +241,7 @@ export interface FileRoutesById {
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRouteWithChildren
+  '/presse': typeof PresseRoute
   '/recrutement': typeof RecrutementRoute
   '/regie': typeof RegieRoute
   '/transports': typeof TransportsRouteWithChildren
@@ -263,6 +272,7 @@ export interface FileRouteTypes {
     | '/kinshasa'
     | '/parking'
     | '/preparer'
+    | '/presse'
     | '/recrutement'
     | '/regie'
     | '/transports'
@@ -291,6 +301,7 @@ export interface FileRouteTypes {
     | '/kinshasa'
     | '/parking'
     | '/preparer'
+    | '/presse'
     | '/recrutement'
     | '/regie'
     | '/transports'
@@ -319,6 +330,7 @@ export interface FileRouteTypes {
     | '/kinshasa'
     | '/parking'
     | '/preparer'
+    | '/presse'
     | '/recrutement'
     | '/regie'
     | '/transports'
@@ -348,6 +360,7 @@ export interface RootRouteChildren {
   KinshasaRoute: typeof KinshasaRouteWithChildren
   ParkingRoute: typeof ParkingRoute
   PreparerRoute: typeof PreparerRouteWithChildren
+  PresseRoute: typeof PresseRoute
   RecrutementRoute: typeof RecrutementRoute
   RegieRoute: typeof RegieRoute
   TransportsRoute: typeof TransportsRouteWithChildren
@@ -382,6 +395,13 @@ declare module '@tanstack/react-router' {
       path: '/recrutement'
       fullPath: '/recrutement'
       preLoaderRoute: typeof RecrutementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/presse': {
+      id: '/presse'
+      path: '/presse'
+      fullPath: '/presse'
+      preLoaderRoute: typeof PresseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/preparer': {
@@ -626,6 +646,7 @@ const rootRouteChildren: RootRouteChildren = {
   KinshasaRoute: KinshasaRouteWithChildren,
   ParkingRoute: ParkingRoute,
   PreparerRoute: PreparerRouteWithChildren,
+  PresseRoute: PresseRoute,
   RecrutementRoute: RecrutementRoute,
   RegieRoute: RegieRoute,
   TransportsRoute: TransportsRouteWithChildren,
