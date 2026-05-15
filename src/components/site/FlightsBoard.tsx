@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { Search, Clock, Loader2, ArrowRight } from "lucide-react";
-import { getFlights, type FlightRow } from "@/lib/flights.functions";
+import { getFlights, buildCKey, type FlightRow } from "@/lib/flights.functions";
 import { AirlineLogo } from "@/components/site/AirlineLogo";
 
 type Props = { type: "departure" | "arrival" };
