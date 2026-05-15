@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { Search, Clock, Loader2, ArrowRight } from "lucide-react";
-import { getFlights, type FlightRow } from "@/lib/flights.functions";
+import { getFlights, buildCKey, type FlightRow } from "@/lib/flights.functions";
 import { AirlineLogo } from "@/components/site/AirlineLogo";
 
 type Props = { type: "departure" | "arrival" };
@@ -91,13 +91,11 @@ export function FlightsBoard({ type }: Props) {
             <Link
               key={i}
               to="/vols/detail"
-              search={{ type, flight: f.flight, scheduled: f.scheduled }}
+              search={{ type, flight: f.flight, scheduled: f.scheduled, cKey: buildCKey(f) }}
               className="block bg-card rounded-2xl border border-border hover:border-accent/40 hover:shadow-[var(--shadow-card)] transition grid grid-cols-12 items-center gap-4 px-4 md:px-6 py-4"
             >
               <div className="col-span-12 md:col-span-3 flex items-center gap-3">
-                <div className="h-14 w-24 rounded-md bg-primary/5 border border-border flex items-center justify-center p-2">
-                  <AirlineLogo iata={f.airlineIata} name={f.airline} className="max-h-10 w-auto" />
-                </div>
+                <AirlineLogo iata={f.airlineIata} name={f.airline} width={96} height={32} />
                 <div className="min-w-0">
                   <p className="font-mono font-bold text-primary text-sm truncate">{f.flight}</p>
                   <p className="text-xs text-muted-foreground truncate">{f.airline === "empty" ? "—" : f.airline}</p>
