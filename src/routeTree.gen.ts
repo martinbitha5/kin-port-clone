@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VolsRouteImport } from './routes/vols'
 import { Route as TransportsRouteImport } from './routes/transports'
+import { Route as RegieRouteImport } from './routes/regie'
+import { Route as RecrutementRouteImport } from './routes/recrutement'
 import { Route as PreparerRouteImport } from './routes/preparer'
 import { Route as ParkingRouteImport } from './routes/parking'
 import { Route as KinshasaRouteImport } from './routes/kinshasa'
@@ -42,6 +44,16 @@ const VolsRoute = VolsRouteImport.update({
 const TransportsRoute = TransportsRouteImport.update({
   id: '/transports',
   path: '/transports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegieRoute = RegieRouteImport.update({
+  id: '/regie',
+  path: '/regie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecrutementRoute = RecrutementRouteImport.update({
+  id: '/recrutement',
+  path: '/recrutement',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PreparerRoute = PreparerRouteImport.update({
@@ -164,6 +176,8 @@ export interface FileRoutesByFullPath {
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRouteWithChildren
+  '/recrutement': typeof RecrutementRoute
+  '/regie': typeof RegieRoute
   '/transports': typeof TransportsRouteWithChildren
   '/vols': typeof VolsRouteWithChildren
   '/aeroport/boutiques': typeof AeroportBoutiquesRoute
@@ -190,6 +204,8 @@ export interface FileRoutesByTo {
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRouteWithChildren
+  '/recrutement': typeof RecrutementRoute
+  '/regie': typeof RegieRoute
   '/transports': typeof TransportsRouteWithChildren
   '/vols': typeof VolsRouteWithChildren
   '/aeroport/boutiques': typeof AeroportBoutiquesRoute
@@ -217,6 +233,8 @@ export interface FileRoutesById {
   '/kinshasa': typeof KinshasaRouteWithChildren
   '/parking': typeof ParkingRoute
   '/preparer': typeof PreparerRouteWithChildren
+  '/recrutement': typeof RecrutementRoute
+  '/regie': typeof RegieRoute
   '/transports': typeof TransportsRouteWithChildren
   '/vols': typeof VolsRouteWithChildren
   '/aeroport/boutiques': typeof AeroportBoutiquesRoute
@@ -245,6 +263,8 @@ export interface FileRouteTypes {
     | '/kinshasa'
     | '/parking'
     | '/preparer'
+    | '/recrutement'
+    | '/regie'
     | '/transports'
     | '/vols'
     | '/aeroport/boutiques'
@@ -271,6 +291,8 @@ export interface FileRouteTypes {
     | '/kinshasa'
     | '/parking'
     | '/preparer'
+    | '/recrutement'
+    | '/regie'
     | '/transports'
     | '/vols'
     | '/aeroport/boutiques'
@@ -297,6 +319,8 @@ export interface FileRouteTypes {
     | '/kinshasa'
     | '/parking'
     | '/preparer'
+    | '/recrutement'
+    | '/regie'
     | '/transports'
     | '/vols'
     | '/aeroport/boutiques'
@@ -324,6 +348,8 @@ export interface RootRouteChildren {
   KinshasaRoute: typeof KinshasaRouteWithChildren
   ParkingRoute: typeof ParkingRoute
   PreparerRoute: typeof PreparerRouteWithChildren
+  RecrutementRoute: typeof RecrutementRoute
+  RegieRoute: typeof RegieRoute
   TransportsRoute: typeof TransportsRouteWithChildren
   VolsRoute: typeof VolsRouteWithChildren
 }
@@ -342,6 +368,20 @@ declare module '@tanstack/react-router' {
       path: '/transports'
       fullPath: '/transports'
       preLoaderRoute: typeof TransportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/regie': {
+      id: '/regie'
+      path: '/regie'
+      fullPath: '/regie'
+      preLoaderRoute: typeof RegieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recrutement': {
+      id: '/recrutement'
+      path: '/recrutement'
+      fullPath: '/recrutement'
+      preLoaderRoute: typeof RecrutementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/preparer': {
@@ -586,9 +626,21 @@ const rootRouteChildren: RootRouteChildren = {
   KinshasaRoute: KinshasaRouteWithChildren,
   ParkingRoute: ParkingRoute,
   PreparerRoute: PreparerRouteWithChildren,
+  RecrutementRoute: RecrutementRoute,
+  RegieRoute: RegieRoute,
   TransportsRoute: TransportsRouteWithChildren,
   VolsRoute: VolsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
