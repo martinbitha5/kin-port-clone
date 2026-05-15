@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight, Loader2, PlaneTakeoff } from "lucide-react";
-import { getFlights, type FlightRow } from "@/lib/flights.functions";
+import { getFlights, buildCKey, type FlightRow } from "@/lib/flights.functions";
+import { AirlineLogo } from "@/components/site/AirlineLogo";
 
 export function NextDepartures() {
   const fetchFn = useServerFn(getFlights);
